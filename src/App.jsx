@@ -1,13 +1,12 @@
-// SETUP
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router";
 
+import NavBar from "./components/NavBar/NavBar";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 
 import * as authService from "./services/authService";
 
-// COMPONENT
 const App = () => {
   const initialState = authService.getUser();
 
@@ -40,6 +39,7 @@ const App = () => {
 
   return (
     <>
+      <NavBar user={user} handleSignOut={handleSignOut} />
       <Routes>
         {user ? (
           // Protected Routes
@@ -64,5 +64,4 @@ const App = () => {
   );
 };
 
-// EXPORTING COMPONENT
 export default App;
