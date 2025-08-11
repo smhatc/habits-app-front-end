@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const SignUp = ({ user, handleSignUp }) => {
   const navigate = useNavigate();
@@ -81,6 +81,9 @@ const SignUp = ({ user, handleSignUp }) => {
         <button type="submit" disabled={formIsInvalid}>
           Sign Up
         </button>
+        <p>
+          Already have an account? <Link to={"/sign-in"}>Sign in</Link>.
+        </p>
       </form>
     </>
   );
