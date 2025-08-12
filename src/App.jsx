@@ -52,20 +52,24 @@ const App = () => {
   const handleAddHabit = async (habitFormData) => {
     const newHabit = await habitService.create(habitFormData);
     setHabits([newHabit, ...habits]);
-    navigate('/habits');
+    navigate("/habits");
   };
 
   const handledeleteHabit = async (habitId) => {
     const deletedHabit = await habitService.deleteHabit(habitId);
     setHabits(habits.filter((habit) => habit._id !== deletedHabit._id));
-    navigate('/habits');
+    navigate("/habits");
   };
 
   const handleUpdateHabit = async (habitId, habitFormData) => {
     const updatedHabit = await habitService.update(habitId, habitFormData);
 
-    setHabits(habits.map((habit) => habit._id === updatedHabit._id ? updatedHabit : habit));
-    
+    setHabits(
+      habits.map((habit) =>
+        habit._id === updatedHabit._id ? updatedHabit : habit
+      )
+    );
+
     navigate(`/habits/${habitId}`);
   };
 
@@ -76,14 +80,18 @@ const App = () => {
         {user ? (
           // Protected Routes
           <>
-          <Route path="/habits" element={<HabitForm handleAddHabit={handleAddHabit} />} />
-          <Route path="/habits/:habitId" element={<HabitForm handleUpdateHabit={handleUpdateHabit} />} />
+            <Route
+              path="/habits/new"
+              element={<HabitForm handleAddHabit={handleAddHabit} />}
+            />
+            <Route
+              path="/habits/:habitId/edit"
+              element={<HabitForm handleUpdateHabit={handleUpdateHabit} />}
+            />
           </>
         ) : (
           // Public Routes
-          <>
-
-          </>
+          <></>
         )}
         <Route
           path="/sign-up"
