@@ -1,16 +1,28 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 
 import NavBar from "./components/NavBar/NavBar";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
+import HabitForm from "./components/HabitForm/HabitForm";
 
 import * as authService from "./services/authService";
+import * as habitService from "./services/habitService";
 
 const App = () => {
   const initialState = authService.getUser();
-
   const [user, setUser] = useState(initialState);
+  const [habits, setHabits] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchAllHabits = async () => {
+      const habitData = await habitService.index();
+
+      setHabits(habitData);
+    };
+    if (user) fetchAllHabits();
+  }, [user]);
 
   const handleSignUp = async (formData) => {
     try {
@@ -37,16 +49,41 @@ const App = () => {
     setUser(null);
   };
 
+  const handleAddHabit = async (habitFormData) => {
+    const newHabit = await habitService.create(habitFormData);
+    setHabits([newHabit, ...habits]);
+    navigate('/habits');
+  };
+
+  const handledeleteHabit = async (habitId) => {
+    const deletedHabit = await habitService.deleteHabit(habitId);
+    setHabits(habits.filter((habit) => habit._id !== deletedHabit._id));
+    navigate('/habits');
+  };
+
+  const handleUpdateHabit = async (habitId, habitFormData) => {
+    const updatedHabit = await habitService.update(habitId, habitFormData);
+
+    setHabits(habits.map((habit) => habit._id === updatedHabit._id ? updatedHabit : habit));
+    
+    navigate(`/habits/${habitId}`);
+  };
+
   return (
     <>
       <NavBar user={user} handleSignOut={handleSignOut} />
       <Routes>
         {user ? (
           // Protected Routes
-          <></>
+          <>
+          <Route path="/habits" element={<HabitForm handleAddHabit={handleAddHabit} />} />
+          <Route path="/habits/:habitId" element={<HabitForm handleUpdateHabit={handleUpdateHabit} />} />
+          </>
         ) : (
           // Public Routes
-          <></>
+          <>
+
+          </>
         )}
         <Route
           path="/sign-up"
@@ -57,6 +94,7 @@ const App = () => {
           element={<SignIn handleSignIn={handleSignIn} user={user} />}
         />
         <Route path="/" element={<h1>Hello World!</h1>} />
+        <Route path="/habits" element={<h1>Habits List</h1>} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </>
