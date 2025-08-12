@@ -7,7 +7,6 @@ import SignIn from "./components/SignIn/SignIn";
 import HabitForm from "./components/HabitForm/HabitForm";
 import HabitDetailsPage from "./components/HabitDetailsPage/HabitDetailsPage";
 import MyHabitsPage from "./components/MyHabitsPage/MyHabitsPage";
-
 import * as authService from "./services/authService";
 import * as habitService from "./services/habitService";
 
@@ -90,7 +89,7 @@ const App = () => {
           <>
             <Route
               path="/habits"
-              element={<MyHabitsPage handleSearch={handleSearch} />}
+              element={<MyHabitsPage handleSearch={handleSearch} habits={habits} />}
             />
 
             <Route
