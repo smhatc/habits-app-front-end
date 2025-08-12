@@ -7,6 +7,7 @@ import SignIn from "./components/SignIn/SignIn";
 import HabitForm from "./components/HabitForm/HabitForm";
 import HabitDetailsPage from "./components/HabitDetailsPage/HabitDetailsPage";
 import MyHabitsPage from "./components/MyHabitsPage/MyHabitsPage";
+import HomePage from "./components/HomePage/HomePage";
 import * as authService from "./services/authService";
 import * as habitService from "./services/habitService";
 
@@ -123,7 +124,12 @@ const App = () => {
           path="/sign-in"
           element={<SignIn handleSignIn={handleSignIn} user={user} />}
         />
-        <Route path="/" element={<h1>Hello World!</h1>} />
+        <Route
+          path="/"
+          element={
+            <HomePage user={user} handleSearch={handleSearch} habits={habits} />
+          }
+        />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </>
