@@ -1,14 +1,26 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import * as habitService from "../../services/habitService";
+import "./HabitForm.css";
 
-const HabitForm = (props) => {
+const HabitForm = ({ handleAddHabit, handleUpdateHabit }) => {
   const { habitId } = useParams();
+
   const [formData, setFormData] = useState({
     habitName: "",
     habitDescription: "",
     habitFrequency: "Daily",
   });
+
+  let formIsInvalid = true;
+
+  if (
+    formData.habitName &&
+    formData.habitDescription &&
+    formData.habitFrequency
+  ) {
+    formIsInvalid = false;
+  }
 
   useEffect(() => {
     const fetchHabit = async () => {
@@ -18,49 +30,55 @@ const HabitForm = (props) => {
     if (habitId) fetchHabit();
   }, [habitId]);
 
-  const handleChange = (evt) => {
-    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (habitId) {
-      props.handleUpdateHabit(habitId, formData);
+      handleUpdateHabit(habitId, formData);
     } else {
-      props.handleAddHabit(formData);
+      handleAddHabit(formData);
     }
   };
 
   return (
     <main>
-      <form onSubmit={handleSubmit}>
-        <h1>{habitId ? "Edit Habit" : "New Habit"}</h1>
-
-        <label htmlFor="habitName-input">Habit Name</label>
+      <h1 className="habitform-header">
+        {habitId ? "Edit Habit" : "Add Habit"}
+      </h1>
+      <form className="habit-form" onSubmit={handleSubmit}>
+        <label className="habit-form-label" htmlFor="habitName-input">
+          Habit Name
+        </label>
         <input
-          required
+          className="habit-form-input"
           type="text"
           name="habitName"
           id="habitName-input"
           value={formData.habitName}
           onChange={handleChange}
-          placeholder="Enter your habit name"
+          placeholder="Enter a habit name"
         />
-
-        <label htmlFor="habitDescription-input">Habit Description</label>
+        <label className="habit-form-label" htmlFor="habitDescription-input">
+          Habit Description
+        </label>
         <textarea
-          required
+          className="habit-form-input"
           name="habitDescription"
           id="habitDescription-input"
           value={formData.habitDescription}
           onChange={handleChange}
           placeholder="Describe your habit"
-          rows="4"
+          rows="5"
         />
-
-        <label htmlFor="habitFrequency-input">Habit Frequency</label>
+        <label className="habit-form-label" htmlFor="habitFrequency-input">
+          Habit Frequency
+        </label>
         <select
-          required
+          className="habit-form-input"
           name="habitFrequency"
           id="habitFrequency-input"
           value={formData.habitFrequency}
@@ -70,8 +88,13 @@ const HabitForm = (props) => {
           <option value="Weekly">Weekly</option>
           <option value="Monthly">Monthly</option>
         </select>
-
-        <button type="submit">{habitId ? "Edit Habit" : "Add Habit"}</button>
+        <button
+          className="habit-form-submitbtn"
+          type="submit"
+          disabled={formIsInvalid}
+        >
+          {habitId ? "Edit Habit" : "Add Habit"}
+        </button>
       </form>
     </main>
   );
