@@ -179,18 +179,17 @@ const Header = ({ user, handleSignOut }) => {
             )}
           </ul>
         </nav>
-      </div>
-
-      <div className="page-header-controls">
-        <button
-          ref={navBtnRef}
-          className="page-header-controls-navmenubtn"
-          onClick={toggleNav}
-          aria-label={navOpen ? "Close navigation" : "Open navigation"}
-          aria-expanded={navOpen}
-        >
-          {navOpen ? "✕" : "☰"}
-        </button>
+        <div className="page-header-controls">
+          <button
+            ref={navBtnRef}
+            className="page-header-controls-navmenubtn"
+            onClick={toggleNav}
+            aria-label={navOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={navOpen}
+          >
+            {navOpen ? "✕" : "☰"}
+          </button>
+        </div>
       </div>
     </header>
   );
