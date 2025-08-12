@@ -6,6 +6,7 @@ import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import HabitForm from "./components/HabitForm/HabitForm";
 import HabitDetailsPage from "./components/HabitDetailsPage/HabitDetailsPage";
+import MyHabitsPage from "./components/MyHabitsPage/MyHabitsPage";
 
 import * as authService from "./services/authService";
 import * as habitService from "./services/habitService";
@@ -81,6 +82,8 @@ const App = () => {
         {user ? (
           // Protected Routes
           <>
+            <Route path="/habits" element={<MyHabitsPage />} />
+
             <Route
               path="/habits/new"
               element={<HabitForm handleAddHabit={handleAddHabit} />}
@@ -106,7 +109,6 @@ const App = () => {
           element={<SignIn handleSignIn={handleSignIn} user={user} />}
         />
         <Route path="/" element={<h1>Hello World!</h1>} />
-        <Route path="/habits" element={<h1>Habits List</h1>} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </>
