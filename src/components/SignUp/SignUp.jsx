@@ -96,7 +96,7 @@ const SignUp = ({ user, handleSignUp }) => {
           Sign Up
         </button>
         <p>
-          Already have an account? <Link to={"/sign-in"}>Sign in</Link>.
+          Already have an account? <Link to={"/sign-in"}>Sign in instead</Link>.
         </p>
       </form>
     </main>

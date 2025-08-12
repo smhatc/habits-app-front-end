@@ -79,7 +79,7 @@ const SignIn = ({ user, handleSignIn }) => {
           Sign In
         </button>
         <p>
-          Don't have an account? <Link to={"/sign-up"}>Sign up</Link>.
+          Don't have an account? <Link to={"/sign-up"}>Sign up instead</Link>.
         </p>
       </form>
     </main>
