@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar/NavBar";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import HabitForm from "./components/HabitForm/HabitForm";
+import HabitDetailsPage from "./components/HabitDetailsPage/HabitDetailsPage";
 
 import * as authService from "./services/authService";
 import * as habitService from "./services/habitService";
@@ -84,6 +85,9 @@ const App = () => {
               path="/habits/new"
               element={<HabitForm handleAddHabit={handleAddHabit} />}
             />
+
+            <Route path="/habits/:habitId" element={<HabitDetailsPage />} />
+
             <Route
               path="/habits/:habitId/edit"
               element={<HabitForm handleUpdateHabit={handleUpdateHabit} />}
