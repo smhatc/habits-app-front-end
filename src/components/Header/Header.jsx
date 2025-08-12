@@ -15,11 +15,9 @@ const Header = ({ user, handleSignOut }) => {
   // Toggle navigation menu (mobile)
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const body = document.body;
 
     const applyNavState = (open) => {
-      // Compute scrollbar width to avoid layout shift when removing scrollbar
       const scrollbarWidth =
         window.innerWidth - document.documentElement.clientWidth;
 
@@ -33,26 +31,19 @@ const Header = ({ user, handleSignOut }) => {
       if (open) {
         body.classList.add("page-header-navigation-bodyactive");
         body.style.paddingRight = `${scrollbarWidth}px`;
-        if (navBtnRef.current)
-          navBtnRef.current.setAttribute("aria-expanded", "true");
       } else {
         body.classList.remove("page-header-navigation-bodyactive");
         body.style.paddingRight = "";
-        if (navBtnRef.current)
-          navBtnRef.current.setAttribute("aria-expanded", "false");
       }
     };
 
     applyNavState(navOpen);
 
     return () => {
-      // Ensure classes/styles removed when component unmounts
       body.classList.remove("page-header-navigation-bodyactive");
       body.style.paddingRight = "";
       if (navRef.current)
         navRef.current.classList.remove("page-header-navigation-menuactive");
-      if (navBtnRef.current)
-        navBtnRef.current.setAttribute("aria-expanded", "false");
     };
   }, [navOpen]);
 
@@ -67,7 +58,6 @@ const Header = ({ user, handleSignOut }) => {
       else headerRef.current.classList.remove("page-header-sticky");
     };
 
-    // Initial check
     onScroll();
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -94,7 +84,6 @@ const Header = ({ user, handleSignOut }) => {
     return () => document.removeEventListener("click", onDocClick);
   }, [profileOpen]);
 
-  // Small helpers
   const toggleNav = () => setNavOpen((s) => !s);
   const toggleProfile = () => setProfileOpen((s) => !s);
 
@@ -117,61 +106,41 @@ const Header = ({ user, handleSignOut }) => {
         <nav ref={navRef} className="page-header-navigation" id="mobileNav">
           <ul className="page-header-navigation-list">
             <li className="page-header-navigation-list-link">
-              <Link to={"/"}>Home</Link>
+              <Link to={"/"} onClick={() => setNavOpen(false)}>
+                Home
+              </Link>
             </li>
 
             {user ? (
               <>
                 <li className="page-header-navigation-list-link">
-                  <Link to={"/habits"}>My Habits</Link>
+                  <Link to={"/habits"} onClick={() => setNavOpen(false)}>
+                    My Habits
+                  </Link>
                 </li>
                 <li className="page-header-navigation-list-link">
-                  <Link to={"/habits/new"}>Add Habit</Link>
-                </li>
-
-                <li className="profile-container">
-                  <button
-                    ref={profileToggleRef}
-                    className="profile-picture"
-                    id="profileToggle"
-                    aria-haspopup="true"
-                    aria-expanded={profileOpen}
-                    onClick={toggleProfile}
-                  >
-                    {user.username[0].toUpperCase()}
-                  </button>
-
-                  {profileOpen && (
-                    <div
-                      ref={profileMenuRef}
-                      className="profile-dropdown"
-                      id="profileMenu"
-                      role="menu"
-                    >
-                      <div className="profile-user">{user.username}</div>
-                      <Link
-                        className="signout-button"
-                        to="/"
-                        onClick={(e) => {
-                          setProfileOpen(false);
-                          handleSignOut && handleSignOut(e);
-                        }}
-                      >
-                        Sign Out
-                      </Link>
-                    </div>
-                  )}
+                  <Link to={"/habits/new"} onClick={() => setNavOpen(false)}>
+                    Add Habit
+                  </Link>
                 </li>
               </>
             ) : (
               <>
                 <li className="page-header-navigation-list-link sign-in-inside">
-                  <Link className="sign-in-link" to={"/sign-in"}>
+                  <Link
+                    className="sign-in-link"
+                    to={"/sign-in"}
+                    onClick={() => setNavOpen(false)}
+                  >
                     Sign In
                   </Link>
                 </li>
                 <li className="page-header-navigation-list-link sign-up-inside">
-                  <Link className="sign-up-link" to={"/sign-up"}>
+                  <Link
+                    className="sign-up-link"
+                    to={"/sign-up"}
+                    onClick={() => setNavOpen(false)}
+                  >
                     Sign Up
                   </Link>
                 </li>
@@ -179,16 +148,49 @@ const Header = ({ user, handleSignOut }) => {
             )}
           </ul>
         </nav>
+
         <div className="page-header-controls">
           <button
             ref={navBtnRef}
             className="page-header-controls-navmenubtn"
             onClick={toggleNav}
-            aria-label={navOpen ? "Close navigation" : "Open navigation"}
-            aria-expanded={navOpen}
           >
             {navOpen ? "✕" : "☰"}
           </button>
+
+          {user && (
+            <div className="profile-container header-controls-profile">
+              <button
+                ref={profileToggleRef}
+                className="profile-picture"
+                id="profileToggle"
+                onClick={toggleProfile}
+              >
+                {user.username[0].toUpperCase()}
+              </button>
+
+              {profileOpen && (
+                <div
+                  ref={profileMenuRef}
+                  className="profile-dropdown"
+                  id="profileMenu"
+                  role="menu"
+                >
+                  <div className="profile-user">{user.username}</div>
+                  <Link
+                    className="signout-button"
+                    to="/"
+                    onClick={(e) => {
+                      setProfileOpen(false);
+                      handleSignOut && handleSignOut(e);
+                    }}
+                  >
+                    Sign Out
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </header>

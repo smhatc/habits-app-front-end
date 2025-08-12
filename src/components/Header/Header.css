@@ -13,13 +13,13 @@
   background-color: var(--bg-color-2);
 }
 
-.page-header a:not(.sign-in-link, .sign-up-link),
-.page-header button:not(.signout-button) {
+.page-header a:not(.sign-in-link, .sign-up-link, .signout-button),
+.page-header button:not(.profile-picture) {
   transition: outline 0.2s ease;
 }
 
-.page-header a:not(.sign-in-link, .sign-up-link):focus-visible,
-.page-header button:focus-visible:not(.signout-button) {
+.page-header a:not(.sign-in-link, .sign-up-link, .signout-button):focus-visible,
+.page-header button:focus-visible:not(.profile-picture) {
   outline: var(--outline);
 }
 
@@ -44,9 +44,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 3.75em;
-  max-height: 3.75em;
-  border-radius: var(--border-radius-2);
+  max-width: 2.5em;
+  max-height: 2.5em;
 }
 
 .page-header-branding-title a {
@@ -104,7 +103,8 @@
 
 .page-header-navigation-list-link a::after,
 .sign-up-link::after,
-.sign-in-link::after {
+.sign-in-link::after,
+.signout-button::after {
   content: none;
 }
 
@@ -227,7 +227,7 @@
 
   .page-header-navigation {
     position: fixed;
-    top: 8rem;
+    top: 7.5rem;
     right: 0;
     bottom: 0;
     left: 0;
