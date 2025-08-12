@@ -11,6 +11,19 @@ const index = async () => {
   }
 };
 
+const search = async (searchQuery) => {
+  try {
+    const res = await fetch(`${BASE_URL}?search=${searchQuery}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Something went wrong.");
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const show = async (habitId) => {
   try {
     const res = await fetch(`${BASE_URL}/${habitId}`, {
@@ -68,4 +81,4 @@ async function update(habitId, habitFormData) {
   }
 }
 
-export { index, show, create, deleteHabit, update };
+export { index, show, create, deleteHabit, update, search };

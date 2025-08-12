@@ -50,13 +50,19 @@ const App = () => {
     setUser(null);
   };
 
+  const handleSearch = async (searchTerm) => {
+    const searchResults = await habitService.search(searchTerm);
+    setHabits([...searchResults]);
+    navigate("/habits");
+  };
+
   const handleAddHabit = async (habitFormData) => {
     const newHabit = await habitService.create(habitFormData);
     setHabits([newHabit, ...habits]);
     navigate("/habits");
   };
 
-  const handledeleteHabit = async (habitId) => {
+  const handleDeleteHabit = async (habitId) => {
     const deletedHabit = await habitService.deleteHabit(habitId);
     setHabits(habits.filter((habit) => habit._id !== deletedHabit._id));
     navigate("/habits");
@@ -81,7 +87,10 @@ const App = () => {
         {user ? (
           // Protected Routes
           <>
-            <Route path="/habits" element={<MyHabitsPage habits={habits} />} />
+            <Route
+              path="/habits"
+              element={<MyHabitsPage handleSearch={handleSearch} habits={habits} />}
+            />
 
             <Route
               path="/habits/new"
