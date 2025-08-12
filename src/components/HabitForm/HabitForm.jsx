@@ -47,7 +47,7 @@ const HabitForm = (props) => {
           placeholder="Enter your habit name"
         />
 
-        <label htmlFor="habitDescription-input">Description</label>
+        <label htmlFor="habitDescription-input">Habit Description</label>
         <textarea
           required
           name="habitDescription"
@@ -58,7 +58,7 @@ const HabitForm = (props) => {
           rows="4"
         />
 
-        <label htmlFor="habitFrequency-input">Frequency</label>
+        <label htmlFor="habitFrequency-input">Habit Frequency</label>
         <select
           required
           name="habitFrequency"
@@ -71,9 +71,7 @@ const HabitForm = (props) => {
           <option value="Monthly">Monthly</option>
         </select>
 
-        <button type="submit">
-          {habitId ? "UPDATE HABIT" : "CREATE HABIT"}
-        </button>
+        <button type="submit">{habitId ? "Edit Habit" : "Add Habit"}</button>
       </form>
     </main>
   );
