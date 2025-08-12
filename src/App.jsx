@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router";
 
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import HomePage from "./components/HomePage/HomePage";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import HabitForm from "./components/HabitForm/HabitForm";
-import HabitDetailsPage from "./components/HabitDetailsPage/HabitDetailsPage";
 import MyHabitsPage from "./components/MyHabitsPage/MyHabitsPage";
-import HomePage from "./components/HomePage/HomePage";
+import HabitDetailsPage from "./components/HabitDetailsPage/HabitDetailsPage";
+
 import * as authService from "./services/authService";
 import * as habitService from "./services/habitService";
 
@@ -89,6 +91,7 @@ const App = () => {
   return (
     <>
       <Header user={user} handleSignOut={handleSignOut} />
+
       <Routes>
         {user ? (
           // Protected Routes
@@ -116,22 +119,28 @@ const App = () => {
           // Public Routes
           <></>
         )}
-        <Route
-          path="/sign-up"
-          element={<SignUp handleSignUp={handleSignUp} user={user} />}
-        />
-        <Route
-          path="/sign-in"
-          element={<SignIn handleSignIn={handleSignIn} user={user} />}
-        />
+
         <Route
           path="/"
           element={
             <HomePage user={user} handleSearch={handleSearch} habits={habits} />
           }
         />
+
+        <Route
+          path="/sign-up"
+          element={<SignUp handleSignUp={handleSignUp} user={user} />}
+        />
+
+        <Route
+          path="/sign-in"
+          element={<SignIn handleSignIn={handleSignIn} user={user} />}
+        />
+
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
+
+      <Footer />
     </>
   );
 };
