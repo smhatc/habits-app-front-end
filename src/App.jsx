@@ -7,7 +7,6 @@ import SignIn from "./components/SignIn/SignIn";
 import HabitForm from "./components/HabitForm/HabitForm";
 import HabitDetailsPage from "./components/HabitDetailsPage/HabitDetailsPage";
 import MyHabitsPage from "./components/MyHabitsPage/MyHabitsPage";
-
 import * as authService from "./services/authService";
 import * as habitService from "./services/habitService";
 
@@ -82,7 +81,7 @@ const App = () => {
         {user ? (
           // Protected Routes
           <>
-            <Route path="/habits" element={<MyHabitsPage />} />
+            <Route path="/habits" element={<MyHabitsPage habits={habits} />} />
 
             <Route
               path="/habits/new"
