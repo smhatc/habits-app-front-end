@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const HabitCard = ({ habit }) => {
+  const [isDone, setIsDone] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsDone(!isDone);
+  };
+
   if (!habit) return null;
-  // console.log(habit);
+
   return (
     <Link to={`/habits/${habit._id}`}>
       <article>
@@ -12,8 +19,14 @@ const HabitCard = ({ habit }) => {
         <p>Started on {habit.createdAt}</p>
         <div>
           <form>
-            <input type="checkbox" name="done" id="marked-done" />{" "}
-            <label htmlFor="marked-done">Mark Done</label>
+            <input
+              type="checkbox"
+              name="done"
+              id={`marked-done-${habit._id}`}
+              checked={isDone}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor={`marked-done-${habit._id}`}>Mark Done</label>
           </form>
           <div>
             <button>Edit</button>
