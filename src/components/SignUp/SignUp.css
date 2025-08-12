@@ -1,0 +1,32 @@
+.sign-up-header {
+  text-align: center;
+  margin: 1.75em auto;
+}
+
+.sign-up-form {
+  width: 75%;
+  margin: 1.75em auto;
+}
+
+.sign-up-form-label {
+  font-weight: var(--font-weight-text-l);
+}
+
+.sign-up-form-input {
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+
+.sign-up-form-submitbtn {
+  width: 100%;
+  margin: 1em 0;
+  font-weight: var(--font-weight-text-l);
+  background-color: var(--bg-color-3);
+  color: var(--color-text-2);
+}
+
+.sign-up-form-submitbtn:disabled {
+  cursor: not-allowed;
+  background-color: var(--bg-color-3-disabled);
+  color: var(--color-text-2);
+}

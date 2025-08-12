@@ -29,7 +29,9 @@ const SearchBar = ({ handleSearch }) => {
         onChange={handleChange}
       />
       <button type="submit">Search</button>
-      <div>{error}</div>
+      <div className="error-message">
+        {error && <span className="error-icon">!</span>} {error}
+      </div>
     </form>
   );
 };

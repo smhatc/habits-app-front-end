@@ -44,12 +44,23 @@
   --color-text-1: #f1f1f1;
   --color-text-2: #f1f1f1;
   --color-links-1: #ff5249;
-  --color-fail: #b82626;
+  --color-fail: #ff5249;
   --color-h1h2-1: #f1f1f1;
 
   --bg-color-1: #1f1f1f;
   --bg-color-2: #0b0b0b;
   --bg-color-3: #ff5249;
+  --bg-color-3-disabled: #ff524944;
+}
+
+::selection {
+  background: var(--bg-color-3);
+  color: var(--color-text-1);
+}
+
+::-moz-selection {
+  background: var(--bg-color-3);
+  color: var(--color-text-1);
 }
 
 html {
@@ -141,7 +152,7 @@ button,
 input,
 textarea {
   display: block;
-  transition: box-shadow 0.4s ease;
+  transition: all 0.4s ease;
   padding: 0.375em;
   border: var(--border-solid);
   border-radius: var(--border-radius-1);
@@ -179,4 +190,21 @@ hr {
   margin: 2em auto;
   border-radius: var(--border-radius-1);
   background-color: var(--bg-color-3);
+}
+
+.error-message {
+  min-height: 1.8em;
+  font-size: var(--font-size-text-ss);
+  font-weight: var(--font-weight-text-l);
+  margin: 0.5em 0;
+  color: var(--color-fail);
+}
+
+.error-icon {
+  display: inline-block;
+  padding: 0.1em 0.7em;
+  border-radius: var(--border-radius-2);
+  text-align: center;
+  background-color: var(--color-fail);
+  color: var(--color-text-2);
 }
