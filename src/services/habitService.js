@@ -13,7 +13,6 @@ const index = async () => {
 
 const search = async (searchQuery) => {
   try {
-    console.log("Search term submitted:", searchQuery);
     const res = await fetch(`${BASE_URL}?search=${searchQuery}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });

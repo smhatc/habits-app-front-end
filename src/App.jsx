@@ -53,7 +53,7 @@ const App = () => {
 
   const handleSearch = async (searchTerm) => {
     const searchResults = await habitService.search(searchTerm);
-    setHabits(searchResults);
+    setHabits([...searchResults]);
     navigate("/habits");
   };
 
