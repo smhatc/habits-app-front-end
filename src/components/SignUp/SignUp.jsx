@@ -87,7 +87,9 @@ const SignUp = ({ user, handleSignUp }) => {
           type="password"
           onChange={handleChange}
         />
-        <div>{error}</div>
+        <div className="error-message">
+          {error && <span className="error-icon">!</span>} {error}
+        </div>
         <button
           className="sign-up-form-submitbtn"
           type="submit"
