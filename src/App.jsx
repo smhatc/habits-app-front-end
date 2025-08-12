@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router";
 
-import NavBar from "./components/NavBar/NavBar";
+import Header from "./components/Header/Header";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import HabitForm from "./components/HabitForm/HabitForm";
@@ -88,7 +88,7 @@ const App = () => {
 
   return (
     <>
-      <NavBar user={user} handleSignOut={handleSignOut} />
+      <Header user={user} handleSignOut={handleSignOut} />
       <Routes>
         {user ? (
           // Protected Routes
