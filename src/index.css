@@ -59,16 +59,19 @@ html {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 100svh;
   font-family: var(--font-family-text);
   font-size: var(--font-size-text-s);
   font-weight: var(--font-weight-text-s);
   line-height: var(--line-height-text);
   background-color: var(--bg-color-1);
   color: var(--color-text-1);
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 main {

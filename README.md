@@ -36,7 +36,7 @@ The reason we chose to create a habit tracker app as our project is because we b
 
 ## 📚 Attributions
 
-- App logo taken from [Flaticon](https://www.flaticon.com/free-icons/calendar).
+- [Logo by Flaticon](https://www.flaticon.com/free-icons/calendar).
 
 ## 🤔 Next Steps
 
