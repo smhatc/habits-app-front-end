@@ -1,7 +1,8 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const HabitCard = ({ habit }) => {
-  console.log(habit);
+  if (!habit) return null;
+  // console.log(habit);
   return (
     <Link to={`/habits/${habit._id}`}>
       <article>
