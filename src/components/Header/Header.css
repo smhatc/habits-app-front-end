@@ -184,12 +184,13 @@
 }
 
 .signout-button {
+  display: block;
   transition: box-shadow 0.4s ease !important;
-  width: 100%;
   padding: 0.5em 0.75em;
   border: var(--border-solid);
   border-radius: var(--border-radius-1);
   cursor: pointer;
+  text-align: center;
   font-weight: var(--font-weight-text-l);
   color: var(--color-text-2);
   background-color: var(--bg-color-3);
