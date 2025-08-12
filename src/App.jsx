@@ -51,9 +51,14 @@ const App = () => {
   };
 
   const handleSearch = async (searchTerm) => {
-    const searchResults = await habitService.search(searchTerm);
-    setHabits([...searchResults]);
-    navigate("/habits");
+    try {
+      const searchResults = await habitService.search(searchTerm);
+      setHabits([...searchResults]);
+      navigate("/habits");
+      return { success: true };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
   };
 
   const handleAddHabit = async (habitFormData) => {
@@ -89,7 +94,9 @@ const App = () => {
           <>
             <Route
               path="/habits"
-              element={<MyHabitsPage handleSearch={handleSearch} habits={habits} />}
+              element={
+                <MyHabitsPage handleSearch={handleSearch} habits={habits} />
+              }
             />
 
             <Route
