@@ -9,7 +9,17 @@ const HabitCard = ({ habit }) => {
         <h2>{habit.habitName}</h2>
         <p>{habit.habitDescription}</p>
         <p>{habit.habitFrequency}</p>
-        <p>Started on: {habit.createdAt}</p>
+        <p>Started on {habit.createdAt}</p>
+        <div>
+          <form>
+            <input type="checkbox" name="done" id="marked-done" />{" "}
+            <label htmlFor="marked-done">Mark Done</label>
+          </form>
+          <div>
+            <button>Edit</button>
+            <button>Delete</button>
+          </div>
+        </div>
       </article>
     </Link>
   );
