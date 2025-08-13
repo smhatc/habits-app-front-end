@@ -1,9 +1,15 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import SearchBar from "../SearchBar/SearchBar";
 import HabitList from "../HabitList/HabitList";
 
-const MyHabitsPage = ({ handleSearch, handleDeleteHabit, handleUpdateHabit, habits, user }) => {
+const MyHabitsPage = ({
+  handleSearch,
+  handleDeleteHabit,
+  handleUpdateHabit,
+  habits,
+  user,
+}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,7 +22,17 @@ const MyHabitsPage = ({ handleSearch, handleDeleteHabit, handleUpdateHabit, habi
     <main>
       <h1>My Habits</h1>
       <SearchBar handleSearch={handleSearch} />
-      <HabitList habits={habits} handleDeleteHabit={handleDeleteHabit} />
+      {habits && habits.length > 0 ? (
+        <HabitList
+          habits={habits}
+          handleDeleteHabit={handleDeleteHabit}
+          handleUpdateHabit={handleUpdateHabit}
+        />
+      ) : (
+        <p>
+          No habits yet. Start by <Link to="/habits/new">creating some</Link>!
+        </p>
+      )}
     </main>
   );
 };
