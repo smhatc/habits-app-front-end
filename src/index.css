@@ -123,10 +123,10 @@ li {
 }
 
 a {
-  position: relative;
   border-radius: var(--border-radius-1);
   font-weight: var(--font-weight-text-l);
   text-decoration: none;
+  position: relative;
   color: var(--color-links-1);
 }
 
