@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
+import "./SignIn.css";
 
 const SignIn = ({ user, handleSignIn }) => {
   const navigate = useNavigate();
@@ -42,11 +43,14 @@ const SignIn = ({ user, handleSignIn }) => {
   };
 
   return (
-    <>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
+    <main>
+      <h1 className="sign-in-header">Sign In</h1>
+      <form className="sign-in-form" onSubmit={handleSubmit}>
+        <label className="sign-in-form-label" htmlFor="username">
+          Username
+        </label>
         <input
+          className="sign-in-form-input"
           id="username"
           name="username"
           value={formData.username}
@@ -54,8 +58,11 @@ const SignIn = ({ user, handleSignIn }) => {
           type="text"
           onChange={handleChange}
         />
-        <label htmlFor="password">Password</label>
+        <label className="sign-in-form-label" htmlFor="password">
+          Password
+        </label>
         <input
+          className="sign-in-form-input"
           id="password"
           name="password"
           value={formData.password}
@@ -63,15 +70,21 @@ const SignIn = ({ user, handleSignIn }) => {
           type="password"
           onChange={handleChange}
         />
-        <div>{error}</div>
-        <button type="submit" disabled={formIsInvalid}>
+        <div className="error-message">
+          {error && <span className="error-icon">!</span>} {error}
+        </div>
+        <button
+          className="sign-in-form-submitbtn"
+          type="submit"
+          disabled={formIsInvalid}
+        >
           Sign In
         </button>
         <p>
-          Don't have an account? <Link to={"/sign-up"}>Sign up</Link>.
+          Don't have an account? <Link to={"/sign-up"}>Sign up instead</Link>.
         </p>
       </form>
-    </>
+    </main>
   );
 };
 

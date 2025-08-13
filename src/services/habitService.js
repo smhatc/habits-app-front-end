@@ -16,11 +16,21 @@ const search = async (searchQuery) => {
     const res = await fetch(`${BASE_URL}?search=${searchQuery}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
+
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Something went wrong.");
-    return data;
+
+    // If the response has a message property, it means no habits were found
+    if (data.message) {
+      return { habits: [], message: data.message };
+    }
+
+    // Otherwise return the habits array
+    return { habits: data, message: null };
   } catch (error) {
-    throw error;
+    // For any other errors (network issues, etc.), also return empty array
+    console.log("Search error:", error);
+    return { habits: [], message: "Search failed. Please try again." };
   }
 };
 

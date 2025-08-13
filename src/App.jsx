@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router";
 
-import NavBar from "./components/NavBar/NavBar";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import HomePage from "./components/HomePage/HomePage";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import HabitForm from "./components/HabitForm/HabitForm";
-import HabitDetailsPage from "./components/HabitDetailsPage/HabitDetailsPage";
 import MyHabitsPage from "./components/MyHabitsPage/MyHabitsPage";
+import HabitDetailsPage from "./components/HabitDetailsPage/HabitDetailsPage";
+
 import * as authService from "./services/authService";
 import * as habitService from "./services/habitService";
 
@@ -51,9 +54,17 @@ const App = () => {
   };
 
   const handleSearch = async (searchTerm) => {
-    const searchResults = await habitService.search(searchTerm);
-    setHabits([...searchResults]);
-    navigate("/habits");
+    try {
+      const searchResults = await habitService.search(searchTerm);
+      setHabits([...searchResults.habits]);
+      navigate("/habits");
+      if (searchResults.message) {
+        return { success: false, message: searchResults.message };
+      }
+      return { success: true };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
   };
 
   const handleAddHabit = async (habitFormData) => {
@@ -82,55 +93,62 @@ const App = () => {
 
   return (
     <>
-      <NavBar user={user} handleSignOut={handleSignOut} />
+      <Header user={user} handleSignOut={handleSignOut} />
+    
       <Routes>
-        {user ? (
-          // Protected Routes
-          <>
-            <Route
-              path="/habits"
-              element={
-                <MyHabitsPage
-                  handleSearch={handleSearch}
-                  habits={habits}
-                  handleDeleteHabit={handleDeleteHabit}
-                  handleUpdateHabit={handleUpdateHabit}
-                />
-              }
-            />
+       <Route
+          path="/"
+          element={
+          <HomePage user={user} handleSearch={handleSearch} habits={habits} />
+            }
+        />
 
-            <Route
-              path="/habits/new"
-              element={<HabitForm handleAddHabit={handleAddHabit} />}
-            />
-
-            <Route
-              path="/habits/:habitId"
-              element={
-                <HabitDetailsPage handleDeleteHabit={handleDeleteHabit} />
-              }
-            />
-
-            <Route
-              path="/habits/:habitId/edit"
-              element={<HabitForm handleUpdateHabit={handleUpdateHabit} />}
-            />
-          </>
-        ) : (
-          // Public Routes
-          <></>
-        )}
         <Route
           path="/sign-up"
           element={<SignUp handleSignUp={handleSignUp} user={user} />}
         />
+
         <Route
           path="/sign-in"
           element={<SignIn handleSignIn={handleSignIn} user={user} />}
         />
-        <Route path="/" element={<h1>Hello World!</h1>} />
+
+        {/* Protected Routes - Always available but will redirect if user is not authenticated */}
+        <Route
+          path="/habits"
+          element={
+            <MyHabitsPage
+              handleSearch={handleSearch}
+              habits={habits}
+              user={user}
+              handleDeleteHabit={handleDeleteHabit}
+              handleUpdateHabit={handleUpdateHabit}
+            />
+          }
+        />
+
+        <Route
+          path="/habits/new"
+          element={<HabitForm handleAddHabit={handleAddHabit} user={user} />}
+        />
+
+        <Route
+          path="/habits/:habitId"
+          element={<HabitDetailsPage handleDeleteHabit={handleDeleteHabit}
+ user={user} />}
+        />
+
+        <Route
+          path="/habits/:habitId/edit"
+          element={
+            <HabitForm handleUpdateHabit={handleUpdateHabit} user={user} />
+          }
+        />
+
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
+
+      <Footer />
     </>
   );
 };

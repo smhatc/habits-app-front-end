@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
+import "./SignUp.css";
 
 const SignUp = ({ user, handleSignUp }) => {
   const navigate = useNavigate();
@@ -47,11 +48,14 @@ const SignUp = ({ user, handleSignUp }) => {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
+    <main>
+      <h1 className="sign-up-header">Sign Up</h1>
+      <form className="sign-up-form" onSubmit={handleSubmit}>
+        <label className="sign-up-form-label" htmlFor="username">
+          Username
+        </label>
         <input
+          className="sign-up-form-input"
           id="username"
           name="username"
           value={formData.username}
@@ -59,8 +63,11 @@ const SignUp = ({ user, handleSignUp }) => {
           type="text"
           onChange={handleChange}
         />
-        <label htmlFor="password">Password</label>
+        <label className="sign-up-form-label" htmlFor="password">
+          Password
+        </label>
         <input
+          className="sign-up-form-input"
           id="password"
           name="password"
           value={formData.password}
@@ -68,8 +75,11 @@ const SignUp = ({ user, handleSignUp }) => {
           type="password"
           onChange={handleChange}
         />
-        <label htmlFor="password">Confirm Password</label>
+        <label className="sign-up-form-label" htmlFor="password">
+          Confirm Password
+        </label>
         <input
+          className="sign-up-form-input"
           id="passwordConf"
           name="passwordConf"
           value={formData.passwordConf}
@@ -77,15 +87,21 @@ const SignUp = ({ user, handleSignUp }) => {
           type="password"
           onChange={handleChange}
         />
-        <div>{error}</div>
-        <button type="submit" disabled={formIsInvalid}>
+        <div className="error-message">
+          {error && <span className="error-icon">!</span>} {error}
+        </div>
+        <button
+          className="sign-up-form-submitbtn"
+          type="submit"
+          disabled={formIsInvalid}
+        >
           Sign Up
         </button>
         <p>
-          Already have an account? <Link to={"/sign-in"}>Sign in</Link>.
+          Already have an account? <Link to={"/sign-in"}>Sign in instead</Link>.
         </p>
       </form>
-    </>
+    </main>
   );
 };
 
