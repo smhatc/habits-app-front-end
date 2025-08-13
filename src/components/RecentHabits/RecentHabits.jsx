@@ -1,7 +1,7 @@
 import { useNavigate, Link } from "react-router";
 import HabitCard from "../HabitCard/HabitCard";
 
-const RecentHabits = ({ habits }) => {
+const RecentHabits = ({ habits, handleDeleteHabit }) => {
   const navigate = useNavigate();
   const recentHabits = habits.slice(-4).reverse();
 
@@ -24,6 +24,8 @@ const RecentHabits = ({ habits }) => {
           <HabitCard
             key={habit._id}
             habit={habit}
+            isHomePage={true}
+            handleDeleteHabit={handleDeleteHabit}
             onClick={() => navigate(`/habits/${habit._id}`)}
           />
         ))}

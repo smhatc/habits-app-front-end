@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, Link } from "react-router";
 import SearchBar from "../SearchBar/SearchBar";
 import HabitList from "../HabitList/HabitList";
+import HabitCard from "../HabitCard/HabitCard";
 
 const MyHabitsPage = ({
   handleSearch,
@@ -39,4 +40,5 @@ const MyHabitsPage = ({
     </main>
   );
 };
+
 export default MyHabitsPage;

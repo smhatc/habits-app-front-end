@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 
-const HabitCard = ({ habit, handleDeleteHabit }) => {
+const HabitCard = ({ habit, handleDeleteHabit, isHomePage }) => {
   const navigate = useNavigate();
+
   const [isDone, setIsDone] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -137,7 +138,7 @@ const HabitCard = ({ habit, handleDeleteHabit }) => {
         <button onClick={() => navigate(`/habits/${habit._id}/edit`)}>
           Edit
         </button>
-        <button onClick={() => handleDeleteHabit(habit._id)}>Delete</button>
+        <button onClick={() => handleDeleteHabit(habit._id, isHomePage)}>Delete</button>
       </div>
     </article>
   );
