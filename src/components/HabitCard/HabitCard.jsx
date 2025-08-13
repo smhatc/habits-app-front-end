@@ -111,25 +111,25 @@ const HabitCard = ({ habit, handleDeleteHabit }) => {
       </Link>
       <div>
         <form>
-            <input
-              type="checkbox"
-              name="done"
-              id={`marked-done-${habit._id}`}
-              checked={isDone}
-              disabled={isDisabled}
-              onChange={handleCheckboxChange}
-            />
-            <label htmlFor={`marked-done-${habit._id}`}>
-              {isDisabled && isDone
-                ? `Completed (${
-                    habit.habitFrequency === "Daily"
-                      ? "next: tomorrow"
-                      : habit.habitFrequency === "Weekly"
-                      ? "next: next week"
-                      : "next: next month"
-                  })`
-                : "Mark Done"}
-            </label>
+          <input
+            type="checkbox"
+            name="done"
+            id={`marked-done-${habit._id}`}
+            checked={isDone}
+            disabled={isDisabled}
+            onChange={handleCheckboxChange}
+          />
+          <label htmlFor={`marked-done-${habit._id}`}>
+            {isDisabled && isDone
+              ? `Completed (${
+                  habit.habitFrequency === "Daily"
+                    ? "next: tomorrow"
+                    : habit.habitFrequency === "Weekly"
+                    ? "next: next week"
+                    : "next: next month"
+                })`
+              : "Mark Done"}
+          </label>
         </form>
       </div>
       <div>
@@ -137,7 +137,6 @@ const HabitCard = ({ habit, handleDeleteHabit }) => {
           <button>Edit</button>
         </Link>
         <button onClick={() => handleDeleteHabit(habit._id)}>Delete</button>
-        </div>
       </div>
     </article>
   );
