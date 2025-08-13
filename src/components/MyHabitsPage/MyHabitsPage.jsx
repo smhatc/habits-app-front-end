@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, Link } from "react-router";
 import SearchBar from "../SearchBar/SearchBar";
 import HabitList from "../HabitList/HabitList";
-import HabitCard from "../HabitCard/HabitCard";
+import "./MyHabitsPage.css";
 
 const MyHabitsPage = ({
   handleSearch,
@@ -22,8 +22,10 @@ const MyHabitsPage = ({
 
   return (
     <main>
-      <h1>My Habits</h1>
-      <SearchBar handleSearch={handleSearch} />
+      <h1 className="myhabits-header">My Habits</h1>
+      <div className="myhabits-searchcontainer">
+        <SearchBar handleSearch={handleSearch} />
+      </div>
       {habits && habits.length > 0 ? (
         <HabitList
           habits={habits}
@@ -32,7 +34,7 @@ const MyHabitsPage = ({
         />
       ) : (
         !isSearching && (
-          <p>
+          <p className="myhabits-nohabits">
             No habits yet. Start by <Link to="/habits/new">creating some</Link>!
           </p>
         )
