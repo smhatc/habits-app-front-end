@@ -104,7 +104,12 @@ const App = () => {
               element={<HabitForm handleAddHabit={handleAddHabit} />}
             />
 
-            <Route path="/habits/:habitId" element={<HabitDetailsPage />} />
+            <Route
+              path="/habits/:habitId"
+              element={
+                <HabitDetailsPage handleDeleteHabit={handleDeleteHabit} />
+              }
+            />
 
             <Route
               path="/habits/:habitId/edit"

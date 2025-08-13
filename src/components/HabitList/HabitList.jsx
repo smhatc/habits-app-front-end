@@ -8,6 +8,7 @@ const HabitList = ({ habits, handleUpdateHabit, handleDeleteHabit }) => {
           key={habit._id}
           habit={habit}
           handleDeleteHabit={handleDeleteHabit}
+          handleUpdateHabit={() => handleUpdateHabit(habit._id)}
         />
       ))}
     </div>
