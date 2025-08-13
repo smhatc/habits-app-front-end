@@ -73,10 +73,13 @@ const App = () => {
     navigate("/habits");
   };
 
-  const handleDeleteHabit = async (habitId) => {
+  const handleDeleteHabit = async (habitId, isHomePage = false) => {
     const deletedHabit = await habitService.deleteHabit(habitId);
     setHabits(habits.filter((habit) => habit._id !== deletedHabit._id));
-    navigate("/habits");
+
+    if (!isHomePage) {
+      navigate("/habits");
+    }
   };
 
   const handleUpdateHabit = async (habitId, habitFormData) => {

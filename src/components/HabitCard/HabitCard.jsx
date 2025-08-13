@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
-const HabitCard = ({ habit, handleDeleteHabit }) => {
+const HabitCard = ({ habit, handleDeleteHabit, isHomePage }) => {
   console.log(handleDeleteHabit);
   const [isDone, setIsDone] = useState(false);
 
@@ -34,7 +34,9 @@ const HabitCard = ({ habit, handleDeleteHabit }) => {
           <Link to={`/habits/${habit._id}/edit`}>
             <button>Edit</button>
           </Link>
-          <button onClick={() => handleDeleteHabit(habit._id)}>Delete</button>
+          <button onClick={() => handleDeleteHabit(habit._id, isHomePage)}>
+            Delete
+          </button>
         </div>
       </div>
     </article>

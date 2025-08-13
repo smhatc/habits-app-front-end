@@ -24,6 +24,7 @@ const RecentHabits = ({ habits, handleDeleteHabit }) => {
           <HabitCard
             key={habit._id}
             habit={habit}
+            isHomePage={true}
             handleDeleteHabit={handleDeleteHabit}
             onClick={() => navigate(`/habits/${habit._id}`)}
           />
