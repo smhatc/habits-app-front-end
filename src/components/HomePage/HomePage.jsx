@@ -8,8 +8,10 @@ const HomePage = ({ user, handleSearch, habits, handleDeleteHabit }) => {
     <main>
       {user ? (
         <>
-          <h1>Welcome back, {user.username}!</h1>
-          <SearchBar handleSearch={handleSearch} />
+          <h1 className="home-header">Welcome back, {user.username}!</h1>
+          <div className="home-searchcontainer">
+            <SearchBar handleSearch={handleSearch} />
+          </div>
           <RecentHabits habits={habits} handleDeleteHabit={handleDeleteHabit} />
         </>
       ) : (

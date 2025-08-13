@@ -1,0 +1,27 @@
+.recenthabits-header,
+.recenthabits-nohabits {
+  text-align: center;
+  margin: 0 auto 1.75em;
+}
+
+.recenthabits-nohabits {
+  margin-top: 1.75em;
+}
+
+.recenthabits-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 1em;
+  width: 75%;
+  margin: 2.5em auto;
+}
+
+.home-allhabitslink {
+  display: block;
+  width: fit-content;
+  margin: 1.75em auto;
+  text-align: center;
+}
