@@ -116,52 +116,55 @@ const HabitCard = ({
 
   return (
     <article className="habits-grid-item">
-      <Link className="habits-grid-item-link" to={`/habits/${habit._id}`}>
-        <h2 className="habits-grid-item-heading">{habit.habitName}</h2>
-        <p className="habits-grid-item-para">{habit.habitDescription}</p>
-        <p className="habits-grid-item-para">
-          {habit.habitFrequency} | Started{" "}
-          {new Date(habit.createdAt).toLocaleDateString()}
-        </p>
-      </Link>
-      <form className="habits-grid-item-markdone">
-        <input
-          className="habits-grid-item-markdone-input"
-          type="checkbox"
-          name="done"
-          id={`marked-done-${habit._id}`}
-          checked={isDone}
-          disabled={isDisabled}
-          onChange={handleCheckboxChange}
-        />
-        <label
-          className="habits-grid-item-markdone-label"
-          htmlFor={`marked-done-${habit._id}`}
+      <div className="habits-grid-item-details">
+        <Link
+          className="habits-grid-item-details-link"
+          to={`/habits/${habit._id}`}
         >
-          {isDisabled && isDone
-            ? `Completed (${
-                habit.habitFrequency === "Daily"
-                  ? "next: tomorrow"
-                  : habit.habitFrequency === "Weekly"
-                  ? "next: next week"
-                  : "next: next month"
-              })`
-            : "Mark Done"}
-        </label>
-      </form>
-      <div className="habits-grid-item-editdel">
-        <button
-          className="habits-grid-item-editdel-edit"
-          onClick={() => navigate(`/habits/${habit._id}/edit`)}
-        >
-          Edit
-        </button>
-        <button
-          className="habits-grid-item-editdel-del"
-          onClick={() => handleDeleteHabit(habit._id, isHomePage)}
-        >
-          Delete
-        </button>
+          <h2 className="habits-grid-item-details-link-heading">
+            {habit.habitName}
+          </h2>
+          <p className="habits-grid-item-details-link-para">
+            {habit.habitDescription}
+          </p>
+          <p className="habits-grid-item-details-link-para">
+            {habit.habitFrequency} | Started{" "}
+            {new Date(habit.createdAt).toLocaleDateString()}
+          </p>
+        </Link>
+      </div>
+      <div className="habits-grid-item-controls">
+        <form className="habits-grid-item-controls-markdone">
+          <input
+            className="habits-grid-item-controls-markdone-input"
+            type="checkbox"
+            name="done"
+            id={`marked-done-${habit._id}`}
+            checked={isDone}
+            disabled={isDisabled}
+            onChange={handleCheckboxChange}
+          />
+          <label
+            className="habits-grid-item-controls-markdone-label"
+            htmlFor={`marked-done-${habit._id}`}
+          >
+            {isDisabled && isDone ? "Completed" : "Mark Done"}
+          </label>
+        </form>
+        <div className="habits-grid-item-controls-editdel">
+          <button
+            className="habits-grid-item-controls-editdel-edit"
+            onClick={() => navigate(`/habits/${habit._id}/edit`)}
+          >
+            Edit
+          </button>
+          <button
+            className="habits-grid-item-controls-editdel-del"
+            onClick={() => handleDeleteHabit(habit._id, isHomePage)}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </article>
   );

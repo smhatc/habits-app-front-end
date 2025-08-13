@@ -1,8 +1,9 @@
 import HabitCard from "../HabitCard/HabitCard";
+import "./HabitList.css";
 
 const HabitList = ({ habits, handleUpdateHabit, handleDeleteHabit }) => {
   return (
-    <div>
+    <div className="habit-list">
       {habits.map((habit) => (
         <HabitCard
           key={habit._id}

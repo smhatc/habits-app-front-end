@@ -13,26 +13,31 @@
   background-color: var(--bg-color-2);
 }
 
-.habits-grid-item-link {
+.habits-grid-item-details {
+  text-align: center;
+}
+
+.habits-grid-item-details-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+
   font-weight: var(--font-weight-text-s);
   color: var(--color-text-1);
 }
 
-.habits-grid-item-link::after {
+.habits-grid-item-details-link::after {
   content: none;
 }
 
-.habits-grid-item-link,
-.habits-grid-item-heading,
-.habits-grid-item-para {
-  text-align: center;
-}
-
-.habits-grid-item-para {
+.habits-grid-item-details-link-para {
   color: var(--color-text-1);
 }
 
-.habits-grid-item-markdone {
+.habits-grid-item-controls-markdone {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -43,17 +48,17 @@
   border-radius: var(--border-radius-1);
 }
 
-.habits-grid-item-markdone-input {
+.habits-grid-item-controls-markdone-input {
   min-width: 1.5em;
   min-height: 1.5em;
 }
 
-.habits-grid-item-markdone-label {
+.habits-grid-item-controls-markdone-label {
   padding-left: 0.5em;
   font-weight: var(--font-weight-text-l);
 }
 
-.habits-grid-item-editdel {
+.habits-grid-item-controls-editdel {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -61,13 +66,13 @@
   gap: 0.5em;
 }
 
-.habits-grid-item-editdel-edit,
-.habits-grid-item-editdel-del {
+.habits-grid-item-controls-editdel-edit,
+.habits-grid-item-controls-editdel-del {
   display: block;
   min-width: calc(50% - 0.5em);
   font-weight: var(--font-weight-text-l);
 }
 
-.habits-grid-item-editdel-del {
+.habits-grid-item-controls-editdel-del {
   background-color: var(--bg-color-3);
 }
