@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 
-const HabitCard = ({ habit, handleDeleteHabit, isHomePage }) => {
+const HabitCard = ({
+  habit,
+  handleDeleteHabit,
+  onHabitCompleted,
+  isHomePage,
+}) => {
   const navigate = useNavigate();
 
   const [isDone, setIsDone] = useState(false);
@@ -93,6 +98,11 @@ const HabitCard = ({ habit, handleDeleteHabit, isHomePage }) => {
 
         setIsDone(true);
         setIsDisabled(true);
+
+        // Trigger live reload of habit data
+        if (onHabitCompleted) {
+          onHabitCompleted();
+        }
       } else {
         console.error("Failed to mark habit as done");
       }
@@ -138,7 +148,9 @@ const HabitCard = ({ habit, handleDeleteHabit, isHomePage }) => {
         <button onClick={() => navigate(`/habits/${habit._id}/edit`)}>
           Edit
         </button>
-        <button onClick={() => handleDeleteHabit(habit._id, isHomePage)}>Delete</button>
+        <button onClick={() => handleDeleteHabit(habit._id, isHomePage)}>
+          Delete
+        </button>
       </div>
     </article>
   );
