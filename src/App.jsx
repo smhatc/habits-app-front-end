@@ -24,7 +24,7 @@ const App = () => {
     const fetchAllHabits = async () => {
       const habitData = await habitService.index();
       setHabits(habitData);
-      setIsSearching(false); // Reset search state when fetching all habits
+      setIsSearching(false);
     };
     if (user) fetchAllHabits();
   }, [user]);
@@ -58,13 +58,14 @@ const App = () => {
     try {
       setIsSearching(true);
       const searchResults = await habitService.search(searchTerm);
-      
+
       if (searchResults.message) {
-        // If no results found, don't navigate and return error message
-        return { success: false, message: "No habits match the search criteria." };
+        return {
+          success: false,
+          message: "No habits match the search criteria.",
+        };
       }
-      
-      // If results found, update habits and navigate
+
       setHabits([...searchResults.habits]);
       navigate("/habits");
       return { success: true };
@@ -76,7 +77,7 @@ const App = () => {
   const handleAddHabit = async (habitFormData) => {
     const newHabit = await habitService.create(habitFormData);
     setHabits([newHabit, ...habits]);
-    setIsSearching(false); // Reset search state when adding new habit
+    setIsSearching(false);
     navigate("/habits");
   };
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
+import "./HabitCard.css";
 
 const HabitCard = ({
   habit,
@@ -114,41 +115,51 @@ const HabitCard = ({
   if (!habit) return null;
 
   return (
-    <article>
-      <Link to={`/habits/${habit._id}`}>
-        <h2>{habit.habitName}</h2>
-        <p>{habit.habitDescription}</p>
-        <p>{habit.habitFrequency}</p>
-        <p>Started on {new Date(habit.createdAt).toLocaleDateString()}</p>
+    <article className="habits-grid-item">
+      <Link className="habits-grid-item-link" to={`/habits/${habit._id}`}>
+        <h2 className="habits-grid-item-heading">{habit.habitName}</h2>
+        <p className="habits-grid-item-para">{habit.habitDescription}</p>
+        <p className="habits-grid-item-para">
+          {habit.habitFrequency} | Started{" "}
+          {new Date(habit.createdAt).toLocaleDateString()}
+        </p>
       </Link>
-      <div>
-        <form>
-          <input
-            type="checkbox"
-            name="done"
-            id={`marked-done-${habit._id}`}
-            checked={isDone}
-            disabled={isDisabled}
-            onChange={handleCheckboxChange}
-          />
-          <label htmlFor={`marked-done-${habit._id}`}>
-            {isDisabled && isDone
-              ? `Completed (${
-                  habit.habitFrequency === "Daily"
-                    ? "next: tomorrow"
-                    : habit.habitFrequency === "Weekly"
-                    ? "next: next week"
-                    : "next: next month"
-                })`
-              : "Mark Done"}
-          </label>
-        </form>
-      </div>
-      <div>
-        <button onClick={() => navigate(`/habits/${habit._id}/edit`)}>
+      <form className="habits-grid-item-markdone">
+        <input
+          className="habits-grid-item-markdone-input"
+          type="checkbox"
+          name="done"
+          id={`marked-done-${habit._id}`}
+          checked={isDone}
+          disabled={isDisabled}
+          onChange={handleCheckboxChange}
+        />
+        <label
+          className="habits-grid-item-markdone-label"
+          htmlFor={`marked-done-${habit._id}`}
+        >
+          {isDisabled && isDone
+            ? `Completed (${
+                habit.habitFrequency === "Daily"
+                  ? "next: tomorrow"
+                  : habit.habitFrequency === "Weekly"
+                  ? "next: next week"
+                  : "next: next month"
+              })`
+            : "Mark Done"}
+        </label>
+      </form>
+      <div className="habits-grid-item-editdel">
+        <button
+          className="habits-grid-item-editdel-edit"
+          onClick={() => navigate(`/habits/${habit._id}/edit`)}
+        >
           Edit
         </button>
-        <button onClick={() => handleDeleteHabit(habit._id, isHomePage)}>
+        <button
+          className="habits-grid-item-editdel-del"
+          onClick={() => handleDeleteHabit(habit._id, isHomePage)}
+        >
           Delete
         </button>
       </div>

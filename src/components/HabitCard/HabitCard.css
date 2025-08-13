@@ -1,0 +1,66 @@
+.habits-grid-item {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  max-width: 450px;
+  padding: 0.75em;
+  border: var(--border-dashed);
+  border-radius: var(--border-radius-1);
+  background-color: var(--bg-color-2);
+}
+
+.habits-grid-item-link {
+  color: var(--color-text-1);
+}
+
+.habits-grid-item-heading,
+.habits-grid-item-para {
+  text-align: center;
+}
+
+.habits-grid-item-para {
+  color: var(--color-text-3);
+}
+
+.habits-grid-item-markdone {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75em;
+  margin: 0.75em 0;
+  border: var(--border-dashed);
+  border-radius: var(--border-radius-1);
+}
+
+.habits-grid-item-markdone-input {
+  display: inline-block;
+  min-width: 1.5em;
+  min-height: 1.5em;
+}
+
+.habits-grid-item-markdone-label {
+  padding-left: 0.5em;
+  font-weight: var(--font-weight-text-l);
+}
+
+.habits-grid-item-editdel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.habits-grid-item-editdel-edit,
+.habits-grid-item-editdel-del {
+  display: block;
+  min-width: calc(50% - 0.5em);
+}
+
+.habits-grid-item-editdel-del {
+  background-color: var(--bg-color-3);
+}

@@ -116,7 +116,7 @@
   justify-content: space-between;
   align-items: stretch;
   flex-wrap: nowrap;
-  max-width: 600px;
+  max-width: 450px;
   padding: 0.75em;
   border: var(--border-dashed);
   border-radius: var(--border-radius-1);

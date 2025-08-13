@@ -43,6 +43,7 @@
 
   --color-text-1: #f1f1f1;
   --color-text-2: #f1f1f1;
+  --color-text-3: #f1f1f1aa;
   --color-links-1: #ff5249;
   --color-fail: #ff5249;
   --color-h1h2-1: #f1f1f1;
@@ -123,14 +124,17 @@ li {
 }
 
 a {
-  position: relative;
   border-radius: var(--border-radius-1);
   font-weight: var(--font-weight-text-l);
   text-decoration: none;
+}
+
+a:not(.habits-grid-item-link) {
+  position: relative;
   color: var(--color-links-1);
 }
 
-a::after {
+a:not(.habits-grid-item-link)::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -143,8 +147,8 @@ a::after {
   background-color: var(--color-links-1);
 }
 
-a:hover::after,
-a:focus-visible::after {
+a:hover:not(.habits-grid-item-link)::after,
+a:focus-visible:not(.habits-grid-item-link)::after {
   transform: scaleX(1);
 }
 
