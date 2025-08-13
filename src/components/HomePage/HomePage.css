@@ -89,9 +89,7 @@
 }
 
 .home-reviews {
-  width: fit-content;
   padding: 0 2.5em 0;
-  margin: auto;
 }
 
 .home-reviews-heading {
@@ -106,7 +104,7 @@
   justify-content: center;
   align-items: stretch;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 1em;
 }
 
 .home-review {
@@ -116,7 +114,8 @@
   justify-content: space-between;
   align-items: stretch;
   flex-wrap: nowrap;
-  max-width: 450px;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
   padding: 0.75em;
   border: var(--border-dashed);
   border-radius: var(--border-radius-1);

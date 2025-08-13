@@ -4,7 +4,6 @@ import RecentHabits from "../RecentHabits/RecentHabits";
 import "./HomePage.css";
 
 const HomePage = ({ user, handleSearch, habits, handleDeleteHabit }) => {
-  console.log(handleDeleteHabit);
   return (
     <main>
       {user ? (
