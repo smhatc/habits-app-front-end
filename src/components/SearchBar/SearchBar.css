@@ -1,0 +1,16 @@
+.search-bar-form {
+  width: 100%;
+  margin: 1.75em auto;
+}
+
+.search-bar-form-input {
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+
+.search-bar-form-submitbtn {
+  width: 100%;
+  margin: 1em 0;
+  font-weight: var(--font-weight-text-l);
+  background-color: var(--bg-color-3);
+}
