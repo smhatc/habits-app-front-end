@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import * as habitService from "../../services/habitService";
 import HabitCard from "../HabitCard/HabitCard";
 
-const HabitDetailsPage = ({ user }) => {
+const HabitDetailsPage = ({ handleDeleteHabit, user }) => {
   const { habitId } = useParams();
   const navigate = useNavigate();
   const [habit, setHabit] = useState(null);
@@ -31,7 +31,7 @@ const HabitDetailsPage = ({ user }) => {
   return (
     <main>
       <h1>Habit Details</h1>
-      <HabitCard habit={habit} />
+      <HabitCard habit={habit} handleDeleteHabit={handleDeleteHabit} />
     </main>
   );
 };

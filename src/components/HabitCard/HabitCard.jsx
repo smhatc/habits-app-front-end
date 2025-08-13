@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 
-const HabitCard = ({ habit }) => {
+const HabitCard = ({ habit, handleDeleteHabit }) => {
   const [isDone, setIsDone] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -102,14 +102,15 @@ const HabitCard = ({ habit }) => {
   if (!habit) return null;
 
   return (
-    <Link to={`/habits/${habit._id}`}>
-      <article>
+    <article>
+      <Link to={`/habits/${habit._id}`}>
         <h2>{habit.habitName}</h2>
         <p>{habit.habitDescription}</p>
         <p>{habit.habitFrequency}</p>
         <p>Started on {habit.createdAt}</p>
-        <div>
-          <form>
+      </Link>
+      <div>
+        <form>
             <input
               type="checkbox"
               name="done"
@@ -129,14 +130,16 @@ const HabitCard = ({ habit }) => {
                   })`
                 : "Mark Done"}
             </label>
-          </form>
-          <div>
-            <button>Edit</button>
-            <button>Delete</button>
-          </div>
+        </form>
+      </div>
+      <div>
+        <Link to={`/habits/${habit._id}/edit`}>
+          <button>Edit</button>
+        </Link>
+        <button onClick={() => handleDeleteHabit(habit._id)}>Delete</button>
         </div>
-      </article>
-    </Link>
+      </div>
+    </article>
   );
 };
 

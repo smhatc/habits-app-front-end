@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import SearchBar from "../SearchBar/SearchBar";
 import HabitList from "../HabitList/HabitList";
 
-const MyHabitsPage = ({ handleSearch, habits, user }) => {
+const MyHabitsPage = ({ handleSearch, handleDeleteHabit, handleUpdateHabit, habits, user }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const MyHabitsPage = ({ handleSearch, habits, user }) => {
     <main>
       <h1>My Habits</h1>
       <SearchBar handleSearch={handleSearch} />
-      <HabitList habits={habits} />
+      <HabitList habits={habits} handleDeleteHabit={handleDeleteHabit} />
     </main>
   );
 };

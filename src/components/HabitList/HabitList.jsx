@@ -1,10 +1,15 @@
 import HabitCard from "../HabitCard/HabitCard";
 
-const HabitList = ({ habits }) => {
+const HabitList = ({ habits, handleUpdateHabit, handleDeleteHabit }) => {
   return (
     <div>
       {habits.map((habit) => (
-        <HabitCard key={habit._id} habit={habit} />
+        <HabitCard
+          key={habit._id}
+          habit={habit}
+          handleDeleteHabit={handleDeleteHabit}
+          handleUpdateHabit={() => handleUpdateHabit(habit._id)}
+        />
       ))}
     </div>
   );
