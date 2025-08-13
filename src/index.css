@@ -127,14 +127,11 @@ a {
   border-radius: var(--border-radius-1);
   font-weight: var(--font-weight-text-l);
   text-decoration: none;
-}
-
-a:not(.habits-grid-item-link) {
   position: relative;
   color: var(--color-links-1);
 }
 
-a:not(.habits-grid-item-link)::after {
+a::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -147,8 +144,8 @@ a:not(.habits-grid-item-link)::after {
   background-color: var(--color-links-1);
 }
 
-a:hover:not(.habits-grid-item-link)::after,
-a:focus-visible:not(.habits-grid-item-link)::after {
+a:hover::after,
+a:focus-visible::after {
   transform: scaleX(1);
 }
 
