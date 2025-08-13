@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 
 const HabitCard = ({ habit, handleDeleteHabit }) => {
+  console.log(handleDeleteHabit);
   const [isDone, setIsDone] = useState(false);
 
   const handleCheckboxChange = () => {
