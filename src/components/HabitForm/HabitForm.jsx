@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import * as habitService from "../../services/habitService";
 import "./HabitForm.css";
 
-const HabitForm = ({ handleAddHabit, handleUpdateHabit }) => {
+const HabitForm = ({ handleAddHabit, handleUpdateHabit, user }) => {
   const { habitId } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const [formData, setFormData] = useState({
     habitName: "",

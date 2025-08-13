@@ -1,11 +1,18 @@
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import * as habitService from "../../services/habitService";
 import HabitCard from "../HabitCard/HabitCard";
 
-const HabitDetailsPage = () => {
+const HabitDetailsPage = ({ user }) => {
   const { habitId } = useParams();
+  const navigate = useNavigate();
   const [habit, setHabit] = useState(null);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   useEffect(() => {
     async function fetchHabit() {

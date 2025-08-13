@@ -93,33 +93,6 @@ const App = () => {
       <Header user={user} handleSignOut={handleSignOut} />
 
       <Routes>
-        {user ? (
-          // Protected Routes
-          <>
-            <Route
-              path="/habits"
-              element={
-                <MyHabitsPage handleSearch={handleSearch} habits={habits} />
-              }
-            />
-
-            <Route
-              path="/habits/new"
-              element={<HabitForm handleAddHabit={handleAddHabit} />}
-            />
-
-            <Route path="/habits/:habitId" element={<HabitDetailsPage />} />
-
-            <Route
-              path="/habits/:habitId/edit"
-              element={<HabitForm handleUpdateHabit={handleUpdateHabit} />}
-            />
-          </>
-        ) : (
-          // Public Routes
-          <></>
-        )}
-
         <Route
           path="/"
           element={
@@ -135,6 +108,35 @@ const App = () => {
         <Route
           path="/sign-in"
           element={<SignIn handleSignIn={handleSignIn} user={user} />}
+        />
+
+        {/* Protected Routes - Always available but will redirect if user is not authenticated */}
+        <Route
+          path="/habits"
+          element={
+            <MyHabitsPage
+              handleSearch={handleSearch}
+              habits={habits}
+              user={user}
+            />
+          }
+        />
+
+        <Route
+          path="/habits/new"
+          element={<HabitForm handleAddHabit={handleAddHabit} user={user} />}
+        />
+
+        <Route
+          path="/habits/:habitId"
+          element={<HabitDetailsPage user={user} />}
+        />
+
+        <Route
+          path="/habits/:habitId/edit"
+          element={
+            <HabitForm handleUpdateHabit={handleUpdateHabit} user={user} />
+          }
         />
 
         <Route path="*" element={<h1>404 Not Found</h1>} />
