@@ -16,7 +16,7 @@ The reason we chose to create a habit tracker app as our project is because we b
 
 ## 🚀 Getting Started
 
-**Find it here:** []().
+**Find it here:** [https://habits-app-front-end.netlify.app](https://habits-app-front-end.netlify.app).
 
 **Planning materials:** [https://trello.com/b/6nN5hGKQ/habitsapp](https://trello.com/b/6nN5hGKQ/habitsapp).
 
