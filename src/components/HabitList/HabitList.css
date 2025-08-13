@@ -1,0 +1,9 @@
+.habit-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin: 2.5em;
+}
