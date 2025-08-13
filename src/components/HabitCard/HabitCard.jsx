@@ -105,10 +105,10 @@ const HabitCard = ({
           onHabitCompleted();
         }
       } else {
-        console.error("Failed to mark habit as done");
+        throw new Error("Failed to mark habit as done");
       }
     } catch (error) {
-      console.error("Error marking habit as done:", error);
+      console.log(error);
     }
   };
 

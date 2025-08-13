@@ -14,16 +14,22 @@
 }
 
 .habits-grid-item-link {
+  font-weight: var(--font-weight-text-s);
   color: var(--color-text-1);
 }
 
+.habits-grid-item-link::after {
+  content: none;
+}
+
+.habits-grid-item-link,
 .habits-grid-item-heading,
 .habits-grid-item-para {
   text-align: center;
 }
 
 .habits-grid-item-para {
-  color: var(--color-text-3);
+  color: var(--color-text-1);
 }
 
 .habits-grid-item-markdone {
@@ -33,12 +39,11 @@
   align-items: center;
   padding: 0.75em;
   margin: 0.75em 0;
-  border: var(--border-dashed);
+  border: var(--border-solid);
   border-radius: var(--border-radius-1);
 }
 
 .habits-grid-item-markdone-input {
-  display: inline-block;
   min-width: 1.5em;
   min-height: 1.5em;
 }
@@ -60,6 +65,7 @@
 .habits-grid-item-editdel-del {
   display: block;
   min-width: calc(50% - 0.5em);
+  font-weight: var(--font-weight-text-l);
 }
 
 .habits-grid-item-editdel-del {

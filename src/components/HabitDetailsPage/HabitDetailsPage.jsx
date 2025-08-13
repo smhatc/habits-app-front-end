@@ -14,7 +14,7 @@ const HabitDetailsPage = ({ handleDeleteHabit, user }) => {
       const data = await habitService.show(habitId);
       setHabit(data);
     } catch (error) {
-      console.error("Failed to fetch habit:", error);
+      console.log(error);
     }
   };
 
