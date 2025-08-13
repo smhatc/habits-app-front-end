@@ -94,13 +94,13 @@ const App = () => {
   return (
     <>
       <Header user={user} handleSignOut={handleSignOut} />
-
+    
       <Routes>
-        <Route
+       <Route
           path="/"
           element={
-            <HomePage user={user} handleSearch={handleSearch} habits={habits} />
-          }
+          <HomePage user={user} handleSearch={handleSearch} habits={habits} />
+            }
         />
 
         <Route
@@ -121,6 +121,8 @@ const App = () => {
               handleSearch={handleSearch}
               habits={habits}
               user={user}
+              handleDeleteHabit={handleDeleteHabit}
+              handleUpdateHabit={handleUpdateHabit}
             />
           }
         />
@@ -132,7 +134,8 @@ const App = () => {
 
         <Route
           path="/habits/:habitId"
-          element={<HabitDetailsPage user={user} />}
+          element={<HabitDetailsPage handleDeleteHabit={handleDeleteHabit}
+ user={user} />}
         />
 
         <Route
