@@ -89,7 +89,14 @@ const App = () => {
           <>
             <Route
               path="/habits"
-              element={<MyHabitsPage handleSearch={handleSearch} habits={habits} />}
+              element={
+                <MyHabitsPage
+                  handleSearch={handleSearch}
+                  habits={habits}
+                  handleDeleteHabit={handleDeleteHabit}
+                  handleUpdateHabit={handleUpdateHabit}
+                />
+              }
             />
 
             <Route
