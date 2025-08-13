@@ -56,8 +56,11 @@ const App = () => {
   const handleSearch = async (searchTerm) => {
     try {
       const searchResults = await habitService.search(searchTerm);
-      setHabits([...searchResults]);
+      setHabits([...searchResults.habits]);
       navigate("/habits");
+      if (searchResults.message) {
+        return { success: false, message: searchResults.message };
+      }
       return { success: true };
     } catch (error) {
       return { success: false, message: error.message };
