@@ -1,0 +1,139 @@
+.home-hero {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  min-height: calc(100svh - 94px);
+  background-color: var(--bg-color-2);
+}
+
+.home-hero-text {
+  flex: 1 1 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  padding: 5em;
+}
+
+.home-hero-text-cta-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25em;
+  margin-bottom: 0.625em;
+}
+
+.home-hero-text-cta-btns-btnlink {
+  transition: box-shadow 0.4s ease;
+  padding: 0.5em 0.75em;
+  border: var(--border-solid);
+  color: var(--color-text-1);
+}
+
+.home-hero-text-cta-btns-btnlink:hover,
+.home-hero-text-cta-btns-btnlink:focus-visible {
+  box-shadow: var(--box-shadow-1);
+}
+
+.home-hero-text-cta-btns-btnlink::after {
+  content: none;
+}
+
+.home-hero-text-cta-btns-signuplink {
+  background-color: var(--bg-color-3);
+  color: var(--color-text-2);
+}
+
+.home-hero-imagefigure {
+  flex: 1 1 40%;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero-imagefigure-image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: var(--border-radius-1);
+  border-bottom-left-radius: var(--border-radius-1);
+}
+
+.home-howto {
+  margin: 2.5em;
+  scroll-margin-top: 100px;
+  border: var(--border-dashed);
+  border-radius: var(--border-radius-1);
+}
+
+.home-howto-text {
+  width: fit-content;
+  padding: 0 1.25em;
+  margin: 2.5em auto;
+}
+
+.home-howto-text-heading,
+.home-howto-text-para {
+  text-align: center;
+}
+
+.home-howto-text-para {
+  margin: 1.25em auto;
+}
+
+.home-reviews {
+  width: fit-content;
+  padding: 0 2.5em 0;
+  margin: auto;
+}
+
+.home-reviews-heading {
+  width: fit-content;
+  margin: 0 auto 1.25em;
+  text-align: center;
+}
+
+.home-reviews-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.home-review {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  max-width: 600px;
+  padding: 0.75em;
+  border: var(--border-dashed);
+  border-radius: var(--border-radius-1);
+  background-color: var(--bg-color-2);
+}
+
+.home-reviews-para {
+  text-align: center;
+  margin: 2.5em auto;
+}
+
+@media (max-width: 1000px) {
+  .home-hero-text {
+    padding: 2.5em;
+  }
+
+  .home-hero-imagefigure {
+    display: none;
+  }
+}
