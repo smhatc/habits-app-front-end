@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import * as habitService from "../../services/habitService";
 import HabitCard from "../HabitCard/HabitCard";
+import HabitLog from "../HabitLog/HabitLog";
 
 const HabitDetailsPage = ({ handleDeleteHabit, user }) => {
   const { habitId } = useParams();
@@ -32,6 +33,7 @@ const HabitDetailsPage = ({ handleDeleteHabit, user }) => {
     <main>
       <h1>Habit Details</h1>
       <HabitCard habit={habit} handleDeleteHabit={handleDeleteHabit} />
+      <HabitLog habit={habit} />
     </main>
   );
 };
