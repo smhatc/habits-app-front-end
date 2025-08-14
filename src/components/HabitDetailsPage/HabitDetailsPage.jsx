@@ -9,6 +9,19 @@ const HabitDetailsPage = ({ handleDeleteHabit, user }) => {
   const navigate = useNavigate();
   const [habit, setHabit] = useState(null);
 
+  const fetchHabit = async () => {
+    try {
+      const data = await habitService.show(habitId);
+      setHabit(data);
+    } catch (error) {
+      console.error("Failed to fetch habit:", error);
+    }
+  };
+
+  const refreshHabit = () => {
+    fetchHabit();
+  };
+
   useEffect(() => {
     if (!user) {
       navigate("/");
@@ -16,14 +29,6 @@ const HabitDetailsPage = ({ handleDeleteHabit, user }) => {
   }, [user, navigate]);
 
   useEffect(() => {
-    async function fetchHabit() {
-      try {
-        const data = await habitService.show(habitId);
-        setHabit(data);
-      } catch (error) {
-        console.error("Failed to fetch habit:", error);
-      }
-    }
     fetchHabit();
   }, [habitId]);
 
@@ -32,7 +37,11 @@ const HabitDetailsPage = ({ handleDeleteHabit, user }) => {
   return (
     <main>
       <h1>Habit Details</h1>
-      <HabitCard habit={habit} handleDeleteHabit={handleDeleteHabit} />
+      <HabitCard
+        habit={habit}
+        handleDeleteHabit={handleDeleteHabit}
+        onHabitCompleted={refreshHabit}
+      />
       <HabitLog habit={habit} />
     </main>
   );
