@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import * as habitService from "../../services/habitService";
 import HabitCard from "../HabitCard/HabitCard";
 import HabitLog from "../HabitLog/HabitLog";
+import "./HabitDetailsPage.css";
 
 const HabitDetailsPage = ({ handleDeleteHabit, user }) => {
   const { habitId } = useParams();
@@ -36,12 +37,14 @@ const HabitDetailsPage = ({ handleDeleteHabit, user }) => {
 
   return (
     <main>
-      <h1>Habit Details</h1>
-      <HabitCard
-        habit={habit}
-        handleDeleteHabit={handleDeleteHabit}
-        onHabitCompleted={refreshHabit}
-      />
+      <h1 className="habitdetails-header">Habit Details</h1>
+      <div className="habitdetails-cardcontainer">
+        <HabitCard
+          habit={habit}
+          handleDeleteHabit={handleDeleteHabit}
+          onHabitCompleted={refreshHabit}
+        />
+      </div>
       <HabitLog habit={habit} />
     </main>
   );

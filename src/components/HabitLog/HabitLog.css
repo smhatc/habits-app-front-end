@@ -1,0 +1,39 @@
+.habitlog-header {
+  text-align: center;
+  margin: 1.75em auto;
+}
+
+.habitlog-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1em;
+  width: 75%;
+  padding: 1.75em;
+  margin: 2.5em auto 1.75em;
+  border: var(--border-dashed);
+  border-radius: var(--border-radius-1);
+}
+
+.habitlog-log {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.habitlog-checkmark {
+  max-width: 4em;
+  max-height: 4em;
+}
+
+.habitlog-date {
+  display: inline-block;
+  font-weight: var(--font-weight-text-l);
+}
+
+@media (max-width: 500px) {
+  .habitlog-checkmark {
+    max-width: 3em;
+    max-height: 3em;
+  }
+}
