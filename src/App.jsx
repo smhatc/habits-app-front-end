@@ -58,11 +58,15 @@ const App = () => {
     try {
       setIsSearching(true);
       const searchResults = await habitService.search(searchTerm);
+      
+      if (searchResults.message) {
+        // If no results found, don't navigate and return error message
+        return { success: false, message: "No habits match the search criteria." };
+      }
+      
+      // If results found, update habits and navigate
       setHabits([...searchResults.habits]);
       navigate("/habits");
-      if (searchResults.message) {
-        return { success: false, message: searchResults.message };
-      }
       return { success: true };
     } catch (error) {
       return { success: false, message: error.message };
