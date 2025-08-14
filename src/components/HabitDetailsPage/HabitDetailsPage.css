@@ -1,0 +1,11 @@
+.habitdetails-header {
+  text-align: center;
+  margin: 1.75em auto;
+}
+
+.habitdetails-cardcontainer .habits-grid-item {
+  width: 75%;
+  max-width: none;
+  aspect-ratio: 0;
+  margin: 0 auto;
+}
