@@ -9,6 +9,7 @@ const MyHabitsPage = ({
   handleUpdateHabit,
   habits,
   user,
+  isSearching,
 }) => {
   const navigate = useNavigate();
 
@@ -29,9 +30,11 @@ const MyHabitsPage = ({
           handleUpdateHabit={handleUpdateHabit}
         />
       ) : (
-        <p>
-          No habits yet. Start by <Link to="/habits/new">creating some</Link>!
-        </p>
+        !isSearching && (
+          <p>
+            No habits yet. Start by <Link to="/habits/new">creating some</Link>!
+          </p>
+        )
       )}
     </main>
   );

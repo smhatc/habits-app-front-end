@@ -17,13 +17,14 @@ const App = () => {
   const initialState = authService.getUser();
   const [user, setUser] = useState(initialState);
   const [habits, setHabits] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAllHabits = async () => {
       const habitData = await habitService.index();
-
       setHabits(habitData);
+      setIsSearching(false); // Reset search state when fetching all habits
     };
     if (user) fetchAllHabits();
   }, [user]);
@@ -55,6 +56,7 @@ const App = () => {
 
   const handleSearch = async (searchTerm) => {
     try {
+      setIsSearching(true);
       const searchResults = await habitService.search(searchTerm);
       setHabits([...searchResults.habits]);
       navigate("/habits");
@@ -70,6 +72,7 @@ const App = () => {
   const handleAddHabit = async (habitFormData) => {
     const newHabit = await habitService.create(habitFormData);
     setHabits([newHabit, ...habits]);
+    setIsSearching(false); // Reset search state when adding new habit
     navigate("/habits");
   };
 
@@ -94,13 +97,13 @@ const App = () => {
   return (
     <>
       <Header user={user} handleSignOut={handleSignOut} />
-    
+
       <Routes>
-       <Route
+        <Route
           path="/"
           element={
-          <HomePage user={user} handleSearch={handleSearch} habits={habits} />
-            }
+            <HomePage user={user} handleSearch={handleSearch} habits={habits} />
+          }
         />
 
         <Route
@@ -123,6 +126,7 @@ const App = () => {
               user={user}
               handleDeleteHabit={handleDeleteHabit}
               handleUpdateHabit={handleUpdateHabit}
+              isSearching={isSearching}
             />
           }
         />
@@ -134,8 +138,12 @@ const App = () => {
 
         <Route
           path="/habits/:habitId"
-          element={<HabitDetailsPage handleDeleteHabit={handleDeleteHabit}
- user={user} />}
+          element={
+            <HabitDetailsPage
+              handleDeleteHabit={handleDeleteHabit}
+              user={user}
+            />
+          }
         />
 
         <Route
