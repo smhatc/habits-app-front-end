@@ -107,7 +107,7 @@ const HabitCard = ({ habit, handleDeleteHabit }) => {
         <h2>{habit.habitName}</h2>
         <p>{habit.habitDescription}</p>
         <p>{habit.habitFrequency}</p>
-        <p>Started on {habit.createdAt}</p>
+        <p>Started on {new Date(habit.createdAt).toLocaleDateString()}</p>
       </Link>
       <div>
         <form>
